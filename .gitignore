@@ -1,0 +1,12 @@
+target/
+.env
+.env.*
+!.env.example
+data/
+uploads/*
+!uploads/.gitkeep
+*.mv.db
+*.trace.db
+.idea/
+.vscode/
+*.iml

@@ -1,0 +1,6 @@
+package com.circunet.service;
+import org.springframework.stereotype.Service; import java.util.*;
+@Service public class FeasibilityService {
+ public Map<String,Object> calculate(double distance,double qty,double price,double disposal,double factor,double rate,double transportFactor,String factorSource){double cost=distance*qty*rate,revenue=price*qty,avoided=disposal*qty,materialCo2=qty*factor,transportCo2=distance*qty*transportFactor;return Map.of("distanceKm",round(distance),"quantityTonnes",qty,"logistics",Map.of("transportCostInr",round(cost),"ratePerTonneKm",rate),"economics",Map.of("revenueInr",round(revenue),"avoidedDisposalInr",round(avoided),"transportCostInr",round(cost),"netBenefitInr",round(revenue+avoided-cost)),"environment",Map.of("wasteDivertedTonnes",qty,"materialCo2AvoidedKg",round(materialCo2),"transportCo2Kg",round(transportCo2),"netCo2AvoidedKg",round(materialCo2-transportCo2)),"assumptions",Map.of("materialFactorKgPerTonne",factor,"factorSource",factorSource==null?"Illustrative":factorSource,"transportFactorKgPerTonneKm",transportFactor,"note","Estimates; avoided emissions are potential, not verified savings."));}
+ private double round(double n){return Math.round(n*100.0)/100.0;}
+}

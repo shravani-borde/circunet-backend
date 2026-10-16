@@ -1,0 +1,12 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: circunet-postgres
+    environment:
+      POSTGRES_DB: circunet
+      POSTGRES_USER: circunet
+      POSTGRES_PASSWORD: change-me
+    ports: ["5432:5432"]
+    volumes: ["circunet_pg:/var/lib/postgresql/data"]
+volumes:
+  circunet_pg:
